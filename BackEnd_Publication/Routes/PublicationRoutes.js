@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const PublicationController = require('../Controllers/PublicationController');
-const auth = require('../../Middleware/Auth');
+const publicationController = require('../Controllers/PublicationController');
+const authMiddleware = require('../../Middleware/Auth');
 
-// Toutes les routes nécessitent une authentification
-router.post('/', auth, PublicationController.createPublication);
-router.get('/', auth, PublicationController.getAllPublications);
-router.get('/:id', auth, PublicationController.getPublicationById);
-router.put('/:id', auth, PublicationController.updatePublication);
-router.delete('/:id', auth, PublicationController.deletePublication);
-router.get('/user/publications', auth, PublicationController.getUserPublications);
+router.get('/user', authMiddleware, publicationController.getUserPublications);
+router.get('/', publicationController.getAllPublications);
+router.post('/', authMiddleware, publicationController.createPublication);
+router.get('/:id', publicationController.getPublicationById);
+router.put('/:id', authMiddleware, publicationController.updatePublication);
+router.delete('/:id', authMiddleware, publicationController.deletePublication);
 
 module.exports = router;

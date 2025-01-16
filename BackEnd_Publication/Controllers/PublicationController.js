@@ -153,6 +153,8 @@ exports.deletePublication = async (req, res) => {
 // Récupérer les publications d'un utilisateur spécifique
 exports.getUserPublications = async (req, res) => {
     try {
+        console.log('getUserPublications appelé. userId:', req.user.userId);
+        
         const publications = await Publication.findAll({
             where: { userId: req.user.userId },
             include: [{
@@ -163,8 +165,11 @@ exports.getUserPublications = async (req, res) => {
             order: [['createdAt', 'DESC']]
         });
 
+        console.log('Publications trouvées:', publications);
+        
         res.status(200).json(publications);
     } catch (error) {
+        console.error('Erreur dans getUserPublications:', error);
         res.status(500).json({
             message: "Erreur lors de la récupération des publications de l'utilisateur",
             error: error.message
