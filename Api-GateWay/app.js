@@ -10,6 +10,10 @@ app.use('/api/users', createProxyMiddleware({
   changeOrigin: true,
 }));
 
+app.use('/api/publications', createProxyMiddleware({
+  target: 'http://localhost:4000/api/publications',
+  changeOrigin: true,
+}));
 
 // Redirection vers le Product Service
 const PORT = process.env.GATEWAY_PORT || 8000; // Utiliser 8000 au lieu de 1000
