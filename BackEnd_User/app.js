@@ -5,8 +5,15 @@ const routes = require('../General_Routes/Routes');
 
 const app = express();
 
+// Configuration CORS
+app.use(cors({
+    origin: 'http://localhost:5173', // URL de votre frontend Vite
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // Configuration des middlewares
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,3 +48,5 @@ connectDB().then(() => {
     console.error('Impossible de démarrer le serveur:', error);
     process.exit(1);
 });
+
+module.exports = app;

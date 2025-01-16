@@ -5,10 +5,16 @@ const routes = require('../General_Routes/Routes');
 
 const app = express();
 
-// Configuration des middlewares
-app.use(cors());
+// Configuration CORS
+app.use(cors({
+    origin: 'http://localhost:5173', // URL de votre frontend Vite
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Middleware pour parser le JSON
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // Configuration du port
 const PORT = process.env.PORT || 4000;
@@ -41,3 +47,5 @@ connectDB().then(() => {
     console.error('Impossible de démarrer le serveur:', error);
     process.exit(1);
 });
+
+module.exports = app;
