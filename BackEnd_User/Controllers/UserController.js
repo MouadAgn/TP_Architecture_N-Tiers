@@ -26,7 +26,7 @@ exports.register = async (req, res) => {
         });
 
         res.status(201).json({
-            message: "Utilisateur créé avec succès"
+            message: "Utilisateur créé avec succès, veuillez vous connecter"
         });
 
     } catch (error) {
