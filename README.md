@@ -27,6 +27,7 @@ Config_Database : Service da la base de données
 3. GateWay API ( PORT : 8000 )
 
 http://localhost:8000/api/users : URL to point for User 
+
 http://localhost:8000/api/publications : URL to point for Publications 
 
 
